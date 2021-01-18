@@ -1,0 +1,77 @@
+#!/bin/bash
+
+#PBS -A qris-user
+#PBS -l select=1:ncpus=24:mem=496GB
+#PBS -l walltime=336:00:00
+#PBS -q Long
+
+
+# Set trap
+# EXIT runs on any exit, signalled or not.
+finish(){
+
+        cd ${SUPERNOVA_WORKDIR}
+
+        cp ${RUN_ID}/outs/summary.csv ${OUTDIR}
+        cp ${RUN_ID}/outs/report.txt ${OUTDIR}
+
+        tar -czvf ${RUN_ID}_assembly.tar.gz ${RUN_ID}_pseudohap* ${RUN_ID}_raw ${RUN_ID}_megabubbles summary.csv report.txt
+        rsync -avxP --checksum ${RUN_ID}_assembly.tar.gz ${OUTDIR}
+
+        cd ${TMPDIR}
+
+        #tar -zcvf supernova_workdir.tar.gz bilby_wd
+        rsync -axP bilby_wd ${OUTDIR}
+
+        rm -rf ${SUPERNOVA_WORKDIR}
+
+        echo "$(date) : Finished supernova.pbs supernova run"
+}
+trap finish EXIT
+
+#module load singularity/2.5.1
+
+# Variables
+CONTAINER=/home/rosemariesadsad/bilby/supernova_2-1_bc.simg
+FQ_PATH="/30days/rosemariesadsad/bilby/data/10X_rawdata"
+RUN_ID="bilby"
+
+export PATH=/home/rosemariesadsad/software/supernova-2.1.1:$PATH
+
+export OUTDIR=/30days/rosemariesadsad/bilby_out
+mkdir -p ${OUTDIR}
+
+export SUPERNOVA_WORKDIR=${TMPDIR}/bilby_wd
+mkdir -p ${SUPERNOVA_WORKDIR}
+
+cd ${SUPERNOVA_WORKDIR}
+
+#singularity exec ${CONTAINER}
+supernova run \
+    --id=${RUN_ID} \
+    --fastqs=${FQ_PATH} \
+    --maxreads=all \
+    --localcores=24 \
+    --localmem=496
+
+# Generate FASTA outputs
+supernova mkoutput \
+    --style=pseudohap2 \
+    --asmdir=${RUN_ID}/outs/assembly \
+    --outprefix=${RUN_ID}_pseudohap2 \
+    --index
+
+supernova mkoutput \
+    --style=raw \
+    --asmdir=${RUN_ID}/outs/assembly \
+    --outprefix=${RUN_ID}_raw
+
+supernova mkoutput \
+    --style=megabubbles \
+    --asmdir=${RUN_ID}/outs/assembly \
+    --outprefix=${RUN_ID}_megabubbles
+
+supernova mkoutput \
+    --style=pseudohap \
+    --asmdir=${RUN_ID}/outs/assembly \
+    --outprefix=${RUN_ID}_pseudohap
