@@ -1,0 +1,29 @@
+########################### Execution Started #############################
+JobId:10688.flashmgr2
+UserName:rosemariesadsad
+GroupName:qris-user
+ExecutionHost:fl218
+###############################################################################
+tar: bilby_raw: Cannot stat: No such file or directory
+tar: bilby_megabubbles: Cannot stat: No such file or directory
+tar: summary.csv: Cannot stat: No such file or directory
+tar: report.txt: Cannot stat: No such file or directory
+tar: Exiting with failure status due to previous errors
+
+rsync: writefd_unbuffered failed to write 4 bytes to socket [sender]: Broken pipe (32)
+rsync: write failed on "/30days/rosemariesadsad/bilby_out/bilby_wd/bilby/outs/assembly/a.base/gang/micro/a.ebcx": Disk quota exceeded (122)
+rsync error: error in file IO (code 11) at receiver.c(322) [receiver=3.0.9]
+rsync: connection unexpectedly closed (74122 bytes received so far) [sender]
+rsync error: error in rsync protocol data stream (code 12) at io.c(605) [sender=3.0.9]
+########################### Job Execution History #############################
+JobId:10688.flashmgr2
+UserName:rosemariesadsad
+GroupName:qris-user
+JobName:supernova.pbs
+SessionId:21677
+ResourcesRequested:ncpus=24,mem=496gb,walltime=336:00:00,place=free
+ResourcesUsed:cpupercent=1511,cput=1757:31:55,ncpus=24,vmem=681404008kb,mem=515813892kb,walltime=116:15:45
+QueueUsed:Long
+AccountString:qris-user
+ExitStatus:0
+###############################################################################
