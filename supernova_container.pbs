@@ -1,0 +1,43 @@
+#!/bin/bash
+
+#PBS -A qris-user
+#PBS -l select=1:ncpus=24:mem=500GB
+#PBS -l walltime=336:00:00
+#PBS -q Long
+
+
+# Set trap
+# EXIT runs on any exit, signalled or not.
+finish(){
+        cd ${TMPDIR}
+
+        tar -zcvf supernova_workdir.tar.gz bilby_out
+        rsync -avxP --checksum supernova_workdir.tar.gz ${OUTDIR}
+        rm -rf ${SUPERNOVA_WORKDIR}
+
+        echo "$(date) : Finished supernova.pbs supernova run"
+}
+trap finish EXIT
+
+module load singularity/2.5.1
+
+# Variables
+CONTAINER=/home/rosemariesadsad/bilby/supernova_2-1_bc.simg
+FQ_PATH="/30days/rosemariesadsad/bilby/data"
+RUN_ID="bilby"
+
+export OUTDIR=/30days/rosemariesadsad
+export SUPERNOVA_WORKDIR=${TMPDIR}/bilby_out
+mkdir -p ${SUPERNOVA_WORKDIR}
+
+cd ${SUPERNOVA_WORKDIR}
+
+#touch rosie-test.txt
+#touch rosie-test2.txt
+
+singularity exec ${CONTAINER} supernova run \
+    --id=${RUN_ID} \
+    --fastqs=${FQ_PATH} \
+    --maxreads=all \
+    --localcores=24 \
+    --localmem=500
