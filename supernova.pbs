@@ -35,7 +35,7 @@ trap finish EXIT
 module load supernova/2.1.1
 
 # Variables - EDIT THESE
-FQ_PATH="/30days/path/to/data/10X_rawdata"        # Full path to directory containing FASTQ files
+FQ_PATH="/30days/path/to/data/10X_rawdata"        # Full path to directory containing 10X raw data
 RUN_ID="bilby"
 export OUTDIR=/30days/path/to/${RUN_ID}_out     # Full path to output directory
 
