@@ -4,7 +4,7 @@
 #PBS -l select=1:ncpus=24:mem=496GB
 #PBS -l walltime=336:00:00
 #PBS -q Long
-#PBS -N supernova_tmpdir_copy
+#PBS -N supernova
 
 # Set trap
 # EXIT runs on any exit, signalled or not.
@@ -15,34 +15,33 @@ finish(){
         cp ${RUN_ID}/outs/summary.csv ${OUTDIR}
         cp ${RUN_ID}/outs/report.txt ${OUTDIR}
 
-        tar -czvf ${RUN_ID}_assembly.tar.gz ${RUN_ID}_pseudohap* ${RUN_ID}_raw ${RUN_ID}_megabubbles summary.csv report.txt
+        tar -czvf ${RUN_ID}_assembly.tar.gz ${RUN_ID}_pseudohap* report.txt
         rsync -avxP --checksum ${RUN_ID}_assembly.tar.gz ${OUTDIR}
 
         cd ${TMPDIR}
-        echo "tar tempdir directory into 30 day"
-        #tar -zcvf supernova_workdir.tar.gz bilby_wd
+        echo "tar tempdir directory into /30days"
         tar -zcvf ${OUTDIR}/supernova_tmpdir_data.tar.gz ./*
-        #rsync -axP bilby_wd ${OUTDIR}
-
-        rm -rf ${SUPERNOVA_WORKDIR}
+        
+        #rm -rf ${SUPERNOVA_WORKDIR}
 
         echo "$(date) : Finished supernova.pbs supernova run"
 }
 trap finish EXIT
 
+# Supernova to run
 #module load singularity/2.5.1
+#CONTAINER=/home/rosemariesadsad/bilby/supernova_2-1_bc.simg
+#export PATH=/home/rosemariesadsad/software/supernova-2.1.1:$PATH
+module load supernova/2.1.1
 
-# Variables
-CONTAINER=/home/rosemariesadsad/bilby/supernova_2-1_bc.simg
-FQ_PATH="/30days/rosemariesadsad/bilby/data/10X_rawdata"
+# Variables - EDIT THESE
+FQ_PATH="/30days/path/to/data/10X_rawdata"        # Full path to directory containing FASTQ files
 RUN_ID="bilby"
+export OUTDIR=/30days/path/to/${RUN_ID}_out     # Full path to output directory
 
-export PATH=/home/rosemariesadsad/software/supernova-2.1.1:$PATH
-
-export OUTDIR=/30days/rosemariesadsad/bilby_out
+# Do not edit below 
 mkdir -p ${OUTDIR}
-
-export SUPERNOVA_WORKDIR=${TMPDIR}/bilby_wd
+export SUPERNOVA_WORKDIR=${TMPDIR}/${RUN_ID}_wd
 mkdir -p ${SUPERNOVA_WORKDIR}
 
 cd ${SUPERNOVA_WORKDIR}
@@ -52,7 +51,7 @@ supernova run \
     --id=${RUN_ID} \
     --fastqs=${FQ_PATH} \
     --maxreads=all \
-    --localcores=24 \
+    --localcores=${NCPUS} \
     --localmem=496
 
 # Generate FASTA outputs
