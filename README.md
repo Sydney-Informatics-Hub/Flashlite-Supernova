@@ -6,6 +6,13 @@ This repository contains PBS scripts that run the globally installed supernova o
 
 ## User guide
 
+### 10X data
+
+The `supernova.pbs` runs:
+
+* `supernova run` separately for each sample to generate a whole genome de novo assembly for each.
+* `supernova mkoutput` in order to generate various styles of FASTA output for your assemblies.
+
 1. Clone this repository into your working directory on Flashlite by: 
 
   `git clone https://github.com/Sydney-Informatics-Hub/Flashlite-Supernova.git`
@@ -17,6 +24,10 @@ This repository contains PBS scripts that run the globally installed supernova o
 * `OUTDIR`
 
 3. Run the script by `qsub supernova.pbs`
+
+### TELLSeq data
+
+You’ll need to install a local version of supernova on /30days or /90days, and then to replace the 10X barcode file with the TELLSeq provided barcode file before running the scripts.
 
 ## Benchmark metrics
 
