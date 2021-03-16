@@ -44,7 +44,7 @@ The scripts utilise local to the node disk $TMPDIR which handles I/O better than
 
 ## Summary
 
-## Exemplar 1: e.g. Cockroach
+## Exemplar 1: e.g. Cockroach (TELLSeq data)
 
 | Species   | CPUs_requested | CPUs_used | CPU_percent | Mem_requested | Mem_used    | VMem_used   | CPUtime   | CPUtime_mins | Walltime_req | Walltime_used | Walltime_mins | JobFS_req | JobFS_used | Efficiency | Service_units(1*CPU_hours) | Queue | Account   | ExitStatus |
 |-----------|----------------|-----------|-------------|---------------|-------------|-------------|-----------|--------------|--------------|---------------|---------------|-----------|------------|------------|----------------------------|-------|-----------|------------|
