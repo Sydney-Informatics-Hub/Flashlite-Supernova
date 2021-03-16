@@ -1,10 +1,13 @@
-# Flashlite-Supernova
+*Supernova* on *Flashlite* @ *QCIF / RCC*
+===========
 
-Supernova generates phased, whole-genome de novo assemblies from a Chromium-prepared library.
+# Accessing tool/workflow
 
-This repository contains PBS scripts that run the globally installed supernova on [University of Queensland's HPC, Flashlite](https://rcc.uq.edu.au/flashlite). 
+This repository contains PBS scripts that run the globally installed supernova on [University of Queensland's HPC, Flashlite](https://rcc.uq.edu.au/flashlite). Supernova (v2.1.1) has been installed as a system module and can be accessed with the command:
 
-## User guide
+    module load supernova/2.1.1
+
+# Quickstart tutorial
 
 ### 10X data
 
@@ -29,8 +32,17 @@ The `supernova.pbs` runs:
 
 You’ll need to install a local version of supernova on /30days or /90days, and then to replace the 10X barcode file with the TELLSeq provided barcode file before running the scripts.
 
-## Benchmark metrics
+# Optimisation required
+
+# Infrastructure usage and benchmarking
+
+## Summary
+
+## Exemplar 1: e.g. Cockroach
 
 | Species   | CPUs_requested | CPUs_used | CPU_percent | Mem_requested | Mem_used    | VMem_used   | CPUtime   | CPUtime_mins | Walltime_req | Walltime_used | Walltime_mins | JobFS_req | JobFS_used | Efficiency | Service_units(1*CPU_hours) | Queue | Account   | ExitStatus |
 |-----------|----------------|-----------|-------------|---------------|-------------|-------------|-----------|--------------|--------------|---------------|---------------|-----------|------------|------------|----------------------------|-------|-----------|------------|
 | Cockroach | 24             | 24        | 2400        | 496gb         | 158606368kb | 305991020kb | 830:26:04 | 49826.07     | 336:00:00    | 61:34:24      | 3694.4        | NA        | NA         | 0.56       | 830.43                     | Long  | qris-user | 0          |
+
+# Acknowledgements / citations / credits
+
