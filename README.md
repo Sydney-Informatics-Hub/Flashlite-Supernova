@@ -34,7 +34,7 @@ The `supernova.pbs` runs:
 
 ### TELLSeq data
 
-You’ll need to install a local version of supernova on /30days or /90days, and then to replace the 10X barcode file with the TELLSeq provided barcode file before running the scripts.
+Supernova can be used to assemble 'Transposase Enzyme Linked Long-read Sequencing' (TELLseq) data. You’ll need to install a local version of supernova on /30days or /90days, and then to replace the 10X barcode file with the TELLSeq provided barcode file before running the scripts. Refer to [TELL-Seq Data Analysis Roadmap User Guide](https://sagescience.com/wp-content/uploads/2020/10/TELL-Seq-Software-Roadmap-User-Guide-2.pdf).
 
 # Optimisation required
 
