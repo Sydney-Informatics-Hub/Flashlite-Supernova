@@ -38,6 +38,8 @@ You’ll need to install a local version of supernova on /30days or /90days, and
 
 # Optimisation required
 
+The scripts utilise local to the node disk $TMPDIR which handles I/O better than other filesystems.
+
 # Infrastructure usage and benchmarking
 
 ## Summary
