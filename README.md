@@ -9,12 +9,16 @@ This repository contains PBS scripts that run the globally installed supernova o
 
 # Quickstart tutorial
 
-### 10X data
-
 The `supernova.pbs` runs:
 
 * `supernova run` separately for each sample to generate a whole genome de novo assembly for each.
-* `supernova mkoutput` in order to generate various styles of FASTA output for your assemblies.
+* `supernova mkoutput` in order to generate various styles of FASTA output for your assemblies including:
+    *  `--style=raw`
+    *  `--style=megabubbles`
+    *  `--style=pseudohap`
+    *  `--style=pseudohap2`
+
+### 10X data
 
 1. Clone this repository into your working directory on Flashlite by: 
 
