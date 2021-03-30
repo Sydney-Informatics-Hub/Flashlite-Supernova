@@ -15,7 +15,7 @@ finish(){
         cp ${RUN_ID}/outs/summary.csv ${OUTDIR}
         cp ${RUN_ID}/outs/report.txt ${OUTDIR}
 
-        tar -czvf ${RUN_ID}_assembly.tar.gz ${RUN_ID}_pseudohap* report.txt
+        tar -czvf ${RUN_ID}_assembly.tar.gz ${RUN_ID}_pseudohap*
         rsync -avxP --checksum ${RUN_ID}_assembly.tar.gz ${OUTDIR}
 
         cd ${TMPDIR}
