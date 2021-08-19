@@ -50,6 +50,10 @@ The scripts utilise local to the node disk $TMPDIR which handles I/O better than
 |-----------|----------------|-----------|-------------|---------------|-------------|-------------|-----------|--------------|--------------|---------------|---------------|-----------|------------|------------|----------------------------|-------|-----------|------------|
 | Cockroach | 24             | 24        | 2400        | 496gb         | 158606368kb | 305991020kb | 830:26:04 | 49826.07     | 336:00:00    | 61:34:24      | 3694.4        | NA        | NA         | 0.56       | 830.43                     | Long  | qris-user | 0          |
 
-# Acknowledgements / citations / credits
+# Cite us to support us!
+ 
+The Flashlite-Supernova pipeline can be cited as DOI: https://doi.org/10.48546/workflowhub.workflow.151.1
 
+If you use our pipelines, please cite us:
 
+Sydney Informatics Hub, Core Research Facilities, University of Sydney, 2021, The Sydney Informatics Hub Bioinformatics Repository, <date accessed>, https://github.com/Sydney-Informatics-Hub/Bioinformatics
